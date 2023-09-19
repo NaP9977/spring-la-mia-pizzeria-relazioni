@@ -17,10 +17,10 @@
         </thead>
         <tbody>
         <tr th:if="${pizza_list.size() > 0}" th:each="pizza_list : ${pizza_list}">
-            <td th:text="${pizza_list.name}"></td>
-            <td th:text="${pizza_list.description}"></td>
-            <td th:text="${pizza_list.price}"></td>
-            <td><a th:href="@{/pizzeria/{id}(id=${pizza_list.id})}">Details</a></td>
+            <td th:text="${pizza.name}"></td>
+            <td th:text="${pizza.description}"></td>
+            <td th:text="${pizza.price}"></td>
+            <td><a th:href="@{/pizzeria/{id}(id=${pizza.id})}">Details</a></td>
         </tr>
         <tr th:if="${pizza_list.size() == 0}">
             <td colspan="4">No pizzas available</td>
