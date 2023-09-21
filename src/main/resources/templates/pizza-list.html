@@ -7,6 +7,8 @@
 <body>
 <div class="container">
     <h1>Our Special Pizza Menu</h1>
+    <a th:href="@{/pizzeria/form}" class="btn btn-primary">Add Pizza</a>
+
     <table class="table">
         <thead>
         <tr>
@@ -16,17 +18,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${pizza_list.size() > 0}" th:each="pizza_list : ${pizza_list}">
+        <tr th:if="${pizza_list.size() > 0}" th:each="pizza : ${pizza_list}">
             <td th:text="${pizza.name}"></td>
             <td th:text="${pizza.description}"></td>
             <td th:text="${pizza.price}"></td>
             <td><a th:href="@{/pizzeria/{id}(id=${pizza.id})}">Details</a></td>
+
         </tr>
         <tr th:if="${pizza_list.size() == 0}">
             <td colspan="4">No pizzas available</td>
         </tr>
         </tbody>
+
     </table>
+
 </div>
 </body>
 </html>

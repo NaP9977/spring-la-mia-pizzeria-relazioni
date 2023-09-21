@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -30,10 +32,11 @@ public class PizzaController {
 
     @GetMapping("/pizza/{id}")
     public String pizza(@PathVariable("id") Integer id, Model model) {
+
         Optional<Pizza> pizzaOptional = pizzaRepository.findById(id);
         if (pizzaOptional.isPresent()) {
             Pizza pizzaFromDB = pizzaOptional.get();
-            model.addAttribute("single-pizza", pizzaFromDB);
+            model.addAttribute("pizza", pizzaFromDB);
             return "single-pizza";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -57,6 +60,16 @@ public class PizzaController {
         return "redirect:/pizzeria";
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if(result.isPresent()){
+            model.addAttribute("pizza", result.get());
+        return "pizza/edit";}
+        else{
+throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza non trovata");
+        }
 
-
+        }
 }
+

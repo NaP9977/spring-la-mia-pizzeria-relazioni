@@ -14,9 +14,10 @@
 <div class="container">
     <h1>Cerca la pizza che preferisci</h1>
     <form id="pizza-form"
-          th:action="@{/pizzeria/form}"
+          th:action="@{/pizzeria/create}"
           th:object="${pizza}"
           method="POST">
+
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" th:field="*{name}" required
@@ -33,7 +34,7 @@
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" th:field="*{price}"
+            <input type="number" class="form-control" id="price" step="0.1" th:field="*{price}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
                 <ul>
