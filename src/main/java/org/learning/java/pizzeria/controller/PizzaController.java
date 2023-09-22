@@ -10,15 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/pizzeria")
+
 public class PizzaController {
+
     @Autowired
     private PizzaRepository pizzaRepository;
 
@@ -29,6 +29,7 @@ public class PizzaController {
 
         return "pizza-list";
     }
+
 
     @GetMapping("/pizza/{id}")
     public String pizza(@PathVariable("id") Integer id, Model model) {
@@ -65,7 +66,7 @@ public class PizzaController {
         Optional<Pizza> result = pizzaRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("pizza", result.get());
-            return "pizzeria/edit";
+            return "edit";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza non trovata");
         }
@@ -74,7 +75,7 @@ public class PizzaController {
     @PostMapping("/edit/{id}")
     public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/pizzeria/edit";
+            return "edit";
         }
         pizzaRepository.save(formPizza);
         return "redirect:/pizzeria";

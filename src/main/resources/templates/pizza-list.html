@@ -22,7 +22,7 @@
             <td th:text="${pizza.name}"></td>
             <td th:text="${pizza.description}"></td>
             <td th:text="${pizza.price}"></td>
-            <td><a th:href="@{/pizzeria/{id}(id=${pizza.id})}">Details</a></td>
+            <td><a th:href="@{/pizza/{id}(id=${pizza.id})}">Details</a></td>
 
         </tr>
         <tr th:if="${pizza_list.size() == 0}">
