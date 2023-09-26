@@ -2,6 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Pizza list</title>
 </head>
 <body>
@@ -9,12 +12,14 @@
     <h1>Our Special Pizza Menu</h1>
     <a th:href="@{/pizzeria/form}" class="btn btn-primary">Add Pizza</a>
 
-    <table class="table">
+
+    <table class="table table-dark table-striped">
         <thead>
         <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -22,8 +27,14 @@
             <td th:text="${pizza.name}"></td>
             <td th:text="${pizza.description}"></td>
             <td th:text="${pizza.price}"></td>
-            <td><a th:href="@{/pizza/{id}(id=${pizza.id})}">Details</a></td>
 
+            <td>
+                <form th:action="@{/pizzeria/delete/{id}(id=${pizza.id})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <a th:href="@{/pizzeria/pizza/{id}(id=${pizza.id})}">Details</a>
+
+            </td>
         </tr>
         <tr th:if="${pizza_list.size() == 0}">
             <td colspan="4">No pizzas available</td>
