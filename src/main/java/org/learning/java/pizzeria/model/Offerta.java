@@ -1,27 +1,43 @@
 package org.learning.java.pizzeria.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name="Sconti")
+@Table(name="Offerte_speciali")
 public class Offerta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    private Integer offerta_Id;
+    @NotBlank
     private String title;
+    @NotNull
 private LocalDate startDate;
+    @NotNull
 private LocalDate endDate;
+    @ManyToOne
+   /* @JoinColumn(name = "pizza_id", referencedColumnName = "id", nullable = false) */
 
+    private Pizza pizza;
 
-
-    public Integer getId() {
-        return id;
+    public Pizza getPizza() {
+        return pizza;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
+    public Integer getOfferta_Id() {
+        return offerta_Id;
+    }
+
+    public void setOfferta_Id(Integer offerta_Id) {
+        this.offerta_Id = offerta_Id;
     }
 
     public String getTitle() {
