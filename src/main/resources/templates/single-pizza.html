@@ -17,7 +17,9 @@
     <div class="row">
         <h2>Offerte Speciali</h2>
         <div class="my-3">
+            <div th:if="${!pizza.isEnough()}">
             <a class="btn btn-primary" th:href="@{/offerta/create(id=${pizza.id})}">Aggiungi Offerta Speciale</a>
+                </div>
             <table class="table" th:if="${pizza.Offerta_List.size() > 0}">
                 <thead>
                 <tr>

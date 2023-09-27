@@ -70,7 +70,7 @@ public class Pizza {
     }
 
 public boolean isEnough(){
-        if(Offerta_List.size() >= 10){
+        if(Offerta_List.size() >= 3){
             return true;
         }
         return false;
