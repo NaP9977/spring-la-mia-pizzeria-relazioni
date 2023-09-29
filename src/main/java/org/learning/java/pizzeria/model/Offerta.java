@@ -63,4 +63,11 @@ private LocalDate endDate;
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    public boolean isItActive(){
+        if(endDate.isBefore(LocalDate.now())){
+            return false;
+        }
+        return true;
+    }
 }

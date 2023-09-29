@@ -27,6 +27,7 @@ public class OffertaController {
         Optional<Pizza> pizzaResult = pizzaRepository.findById(id);
         if (pizzaResult.isPresent()) {
             Pizza pizza = pizzaResult.get();
+
             Offerta offerta = new Offerta();
             offerta.setPizza(pizza);
 
